@@ -1,5 +1,4 @@
-# 🧠 Teamwork – AI-Based Internship Recommendation & Management System
-
+# 🧠 Job Portal
 ![Python](https://img.shields.io/badge/Python-3.11%2B-blue?logo=python)
 ![Django](https://img.shields.io/badge/Django-5.0-green?logo=django)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
@@ -8,7 +7,7 @@
 ---
 
 ## 📋 Overview
-**Teamwork** is an AI-based web platform that simplifies the process of finding and managing internships for students.  
+**Job Portal** is an web platform that simplifies the process of finding and managing internships for students.  
 It connects students, mentors, and organizations through a centralized portal where users can register, upload CVs, view internship listings, and apply directly.  
 The system intelligently recommends the best internship matches based on user skills, interests, and qualifications.
 
