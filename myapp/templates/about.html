@@ -1,0 +1,203 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Job Portal | About Us</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Favicon -->
+    <link href="{% static 'main/img/favicon.ico' %}" rel="icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Owl Carousel -->
+    <link href="{% static 'main/lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+
+    <!-- WOW.js Animation -->
+    <link href="{% static 'main/lib/animate/animate.min.css' %}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <style>
+        /* Reset Password Page Style Applied */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(88, 144, 164, 0.5)),
+                        url('{% static "main/img/aboutus-bg.jpg" %}') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            background: rgba(34, 34, 34, 0.8) !important;
+            backdrop-filter: blur(6px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        }
+
+        .navbar .nav-link,
+        .navbar-brand h1 {
+            color: #fff !important;
+            font-weight: 600;
+        }
+
+        .navbar .nav-link:hover {
+            color: #5890a4 !important;
+        }
+
+        /* About Section */
+        .about-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 0;
+        }
+
+        .about-container {
+            background: rgba(34, 34, 34, 0.85);
+            border-radius: 10px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.9);
+            padding: 60px;
+            max-width: 1200px;
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        .about-container h1 {
+            color: #5890a4;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            font-size: 2.2em;
+        }
+
+        .about-container p {
+            color: #f0f0f0;
+            font-size: 1.05em;
+            line-height: 1.8;
+        }
+
+        .about-img {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(34, 34, 34, 0.9);
+            color: #aaa;
+            padding: 40px 0;
+        }
+
+        footer a {
+            color: #5890a4;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-menu a {
+            margin-right: 15px;
+        }
+
+        .btn-primary {
+            background-color: #5890a4;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #3f6d7c;
+        }
+
+        @media (max-width: 768px) {
+            .about-container {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top p-3">
+        <div class="container">
+            <a href="{% url 'mainpage' %}" class="navbar-brand d-flex align-items-center">
+                <h1 class="m-0">JobEntry</h1>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div id="navbarCollapse" class="collapse navbar-collapse">
+                <div class="navbar-nav ms-auto">
+                    <a href="{% url 'mainpage' %}" class="nav-item nav-link">Home</a>
+                    <a href="{% url 'aboutus' %}" class="nav-item nav-link active">About</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- About Section -->
+    <section class="about-section">
+        <div class="about-container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <div class="about-img">
+                        <img src="{% static 'main/img/about-7.jpg' %}" class="img-fluid" alt="About Image">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <h1>We Help You Get The Best Job</h1>
+                    <p>
+                        At <strong>JobEntry</strong>, we are dedicated to connecting passionate job seekers with
+                        reputable employers across industries. Our platform is designed to simplify your job search
+                        experience with advanced filters, smart recommendations, and personalized career guidance.
+                    </p>
+                    <p>
+                        Whether you’re a fresh graduate or a professional, our goal is to help you find opportunities
+                        that match your skills, values, and ambitions.
+                    </p>
+                    <a href="{% url 'job_list' %}" class="btn btn-primary mt-3">Explore Jobs</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="container">
+            <p>&copy; Job Portal, All Rights Reserved | Designed by <a href="#">Pal Surani & Om Trivedi</a></p>
+            <div class="footer-menu">
+                <a href="#">Home</a>
+                <a href="#">Cookies</a>
+                <a href="#">Help</a>
+                <a href="#">FAQs</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'main/lib/owlcarousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'main/lib/wow/wow.min.js' %}"></script>
+</body>
+
+</html>

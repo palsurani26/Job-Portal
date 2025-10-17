@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Job - {{ job.title }}</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        /* Import Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: white;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(88, 144, 164, 0.5)), 
+                        url('{% static "images/bg.png" %}');
+            background-size: cover;
+            background-position: center;
+        }
+
+        section {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .application-form {
+            width: 600px;
+            background: rgba(34, 34, 34, 0.8);
+            padding: 40px;
+            border-radius: 4px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.9);
+            text-align: center;
+        }
+
+        .application-form h2 {
+            color: #5890a4;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .application-form button {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <div class="application-form">
+            <h2>Edit Job - {{ job.title }}</h2>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-success">Save Changes</button>
+            </form>
+            <a href="{% url 'job_list' %}" class="btn btn-secondary">Cancel</a>
+        </div>
+    </section>
+</body>
+</html>

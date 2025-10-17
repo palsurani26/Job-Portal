@@ -1,0 +1,122 @@
+{% load static %}
+
+{% if messages %}
+<div class="messages">
+    {% for message in messages %}
+    <div class="alert alert-dismissible alert-danger fade show mt-3 {% if message.tags %}alert-{{ message.tags }}{% endif %}"
+        role="alert" data-mdb-position="top-right">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>{% block css %}
+        h3
+        {
+            color:white;
+        }
+        {% endblock css %}</style>
+    <title> {% block title %}{% endblock title %} </title>
+        <!--------------------- CDN LINKS -------------------->
+        <!-- Font Awesome -->
+        <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        rel="stylesheet"
+        />
+        <!-- Google Fonts -->
+        <link
+        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+        rel="stylesheet"
+        />
+        <!-- MDB -->
+        <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.2/mdb.min.css"
+        rel="stylesheet"
+        />
+</head>
+<body>
+        
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light py-3 sticky-top">
+        <!-- Container wrapper -->
+        <div class="container">
+            <h3  style="color:white" >Job Portal</h3>
+            <!-- Toggle button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Collapsible wrapper -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- Left links -->
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'index' %}" style="color:white">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'index' %}" style="color:white">Category</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'index' %}" style="color:white">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'index' %}" style="color:white">Contact</a>
+                    </li>
+                </ul>
+                <!-- Left links -->
+                <div class="d-flex align-items-center">
+
+        
+            </div>
+            <!-- Container wrapper -->
+    </nav>
+    <!-- Navbar -->
+    {% block content %}{% endblock content %}
+
+    <!-- MDB -->
+    <script
+    type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.2/mdb.umd.min.js"
+    ></script>
+</body>
+</html>
+{% comment %} 
+{% if request.session.user %}
+<div class="dropdown mx-5">
+    <button
+        data-mdb-dropdown-init
+        class="text-reset me-3 dropdown-toggle hidden-arrow btn btn-md"
+        id="navbarDropdownMenuLink"
+        aria-expanded="false"
+        >
+        <i class="fas fa-user"></i> 
+        <span class="text-center" style="text-decoration:none;"> ACCOUNT </span>
+</button>
+    <ul
+    class="dropdown-menu dropdown-menu-end"
+    aria-labelledby="navbarDropdownMenuLink"
+        >
+        <li><a class="dropdown-item" href="{% url 'profile' %}">Profile <i class="fas fa-address-card"></i></a></li>
+        <li><a class="dropdown-item" href="">Cart <i class="fas fa-cart-shopping"></i></a></li>
+        <li><a class="dropdown-item" href="{% url 'logout' %}">Logout <i class="fas fa-right-from-bracket"></i></a></li>
+</ul>
+
+</div>
+{% else %}
+<a href="{% url 'loginpage' %}" class="btn btn-success btn-sm m-2"> 
+    LOGIN
+</a>                    
+<a href="{% url 'signuppage' %}" class="btn btn-warning btn-sm m-2" > 
+    SIGNUP
+</a>
+
+{% endif %} {% endcomment %}

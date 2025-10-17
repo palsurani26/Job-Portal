@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ job.title }} | Job Details</title>
+</head>
+<body>
+    <h1>{{ job.title }}</h1>
+    <p><strong>Company:</strong> {{ job.company_name }}</p>
+    <p><strong>Location:</strong> {{ job.location }}</p>
+    <p><strong>Job Type:</strong> {{ job.get_job_type_display }}</p>
+    <p><strong>Job Description:</strong> {{ job.description }}</p>
+    <p><strong>Who Can Apply:</strong> {{ job.who_can_apply }}</p>
+    <p><strong>Posted on:</strong> {{ job.posted_at }}</p>
+    
+    
+    <a href="{% url 'job_list' %}">Back to Job Listings</a>
+    
+</body>
+</html>

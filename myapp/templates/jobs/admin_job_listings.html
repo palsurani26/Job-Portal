@@ -1,0 +1,54 @@
+{% extends 'jobs/base.html' %}
+
+{% block title %}Admin Job Listings{% endblock %}
+
+{% block header %}
+<header>
+    <div class="logo">JobEntry - Admin</div>
+    <form method="get" action="{% url 'job_list' %}">
+        <input type="text" name="q" placeholder="Search jobs..." value="{{ request.GET.q }}">
+    
+        <select name="job_type">
+            <option value="all" {% if request.GET.job_type == 'all' %}selected{% endif %}>All</option>
+            <option value="FT" {% if request.GET.job_type == 'FT' %}selected{% endif %}>Full Time</option>
+            <option value="PT" {% if request.GET.job_type == 'PT' %}selected{% endif %}>Part Time</option>
+            <option value="CT" {% if request.GET.job_type == 'CT' %}selected{% endif %}>Contract</option>
+            <option value="FL" {% if request.GET.job_type == 'FL' %}selected{% endif %}>Freelance</option>
+        </select>
+    
+        <button type="submit">Search</button>
+    </form>
+    
+    <nav>
+        <div class="top-bar">
+            <a href="{% url 'admin:index' %}" class="dashboard-link">DASHBOARD</a>
+            <form method="post" action="{% url 'admin_logout' %}" class="logout-form">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Logout</button>
+            </form>
+        </div>
+    </nav>
+</header>
+{% endblock %}
+
+{% block content %}
+<section>
+    <div class="job-listings">
+        <h1>Admin: Manage Job Listings</h1>
+        <a href="{% url 'test_excel_job' %}" class="btn btn-success">Export to Excel</a>  <!-- Excel export button -->
+        <ul>
+            {% for job in jobs %}
+            <li>
+                <a href="{% url 'job_detail' job.id %}">{{ job.title }}</a> - 
+                {{ job.company_name }} ({{ job.get_job_type_display }}) 
+                - {{ job.location }}
+                <a href="{% url 'edit_job' job.id %}" class="btn btn-warning btn-sm">Edit</a>
+                <a href="{% url 'delete_job' job.id %}" class="btn btn-danger btn-sm">Delete</a> 
+            </li>
+            {% empty %}
+            <li>No jobs available at the moment.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+{% endblock %}

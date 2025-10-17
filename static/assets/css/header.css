@@ -1,0 +1,79 @@
+/* General Header Styles */
+.app-header {
+    background-color: #343a40; /* Dark background */
+    color: white;
+    padding: 10px 0;
+}
+
+.app-header-inner {
+    max-width: 1200px; /* Maximum width for the header */
+    margin: 0 auto; /* Center the header */
+}
+
+.app-header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Search Box Styles */
+.app-search-box {
+    flex-grow: 1; /* Allow the search box to grow */
+    margin: 0 15px; /* Add some margin */
+}
+
+.search-input {
+    width: 100%; /* Full width */
+    padding: 8px; /* Padding for input */
+    border-radius: 5px;
+    border: 1px solid #ced4da; /* Light border */
+}
+
+.search-btn {
+    margin-left: 5px; /* Space between input and button */
+}
+
+/* Utility Item Styles */
+.app-utility-item {
+    position: relative;
+}
+
+/* Dropdown Styles */
+.app-user-dropdown .dropdown-menu {
+    background-color: #343a40; /* Dropdown background */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+}
+
+.app-user-dropdown .dropdown-item {
+    color: white; /* Dropdown text color */
+}
+
+.app-user-dropdown .dropdown-item:hover {
+    background-color: #495057; /* Hover effect */
+}
+
+/* Notifications Dropdown Styles */
+.app-notifications-dropdown .dropdown-menu {
+    background-color: #343a40;
+    border-radius: 5px;
+}
+
+.app-notifications-dropdown .dropdown-item {
+    color: white;
+}
+
+.app-notifications-dropdown .dropdown-item:hover {
+    background-color: #495057;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .app-header-content {
+        flex-direction: column; /* Stack elements on smaller screens */
+        align-items: flex-start; /* Align to the start */
+    }
+    .app-search-box {
+        margin-top: 10px; /* Margin for search box on small screens */
+    }
+}

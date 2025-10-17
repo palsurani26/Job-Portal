@@ -1,0 +1,150 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Job Portal</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Quicksand', sans-serif;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: white;
+        }
+        section {
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2px;
+            flex-wrap: wrap;
+            overflow: hidden;
+        }
+        section::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(88, 144, 164, 0.5)), url('{% static 'images/bg.png' %}');
+            background-size: cover;
+            background-position: center;
+            animation: animate 5s linear infinite;
+        }
+        section .signin {
+            position: absolute;
+            width: 600px;
+            height: 700px;
+            background: rgba(34, 34, 34, 0.8);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            border-radius: 4px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.9);
+        }
+        section .signin .content {
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 40px;
+        }
+        section .signin .content h2 {
+            font-size: 2em;
+            color: #5890a4;
+            text-transform: uppercase;
+        }
+        section .signin .content .form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        section .signin .content .form .inputBox input {
+            position: relative;
+            width: 100%;
+            background: #333;
+            border: none;
+            outline: none;
+            padding: 25px 10px 7.5px;
+            border-radius: 4px;
+            color: #fff;
+            font-weight: 500;
+            font-size: 1em;
+        }
+        .signin .content .form .inputBox input[type="submit"] {
+            padding: 10px;
+            background: #5890a4;
+            color: #000;
+            font-weight: 600;
+            font-size: 1.35em;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+        }
+        input[type="submit"]:active {
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Main Content -->
+<section>
+    <div class="signin">
+        <div class="content">
+            <h2>Form</h2>
+            {% if messages %}
+                <div class="messages">
+                    {% for message in messages %}
+                        <div class="alert alert-success" role="alert" style="display:none;">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            
+            <form method="post" enctype="multipart/form-data" class="form">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Apply Now">
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- Include Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+
+<!-- JavaScript to handle success alert and redirect -->
+<script>
+    window.onload = function() {
+        const successAlert = document.querySelector('.alert-success');
+        if (successAlert) {
+            // Show a simple JavaScript alert with the message
+            alert(successAlert.textContent);
+            // Redirect after a short delay (e.g., 2 seconds)
+            setTimeout(function() {
+                window.location.href = '/'; // Replace with your main page URL
+            }, 2000);
+        }
+    }
+</script>
+
+</body>
+</html>

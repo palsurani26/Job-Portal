@@ -1,0 +1,190 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post a Job</title>
+
+    <style>
+        /* Import Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #111;
+            color: white;
+        }
+
+        section {
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        section::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(88, 144, 164, 0.5)), 
+                url('{% static "images/bg.png" %}');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .profile-edit {
+            position: relative;
+            width: 500px;
+            padding: 40px;
+            background: rgba(34, 34, 34, 0.95);
+            border-radius: 8px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.9);
+            z-index: 1;
+        }
+
+        .content h2 {
+            font-size: 2em;
+            color: #5890a4;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .inputBox {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .inputBox label {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .inputBox input, .inputBox select, .inputBox textarea {
+            width: 100%;
+            padding: 12px;
+            background: #333;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 1em;
+        }
+
+        .inputBox textarea {
+            resize: none;
+            height: 80px;
+        }
+
+        button {
+            padding: 15px;
+            background: #5890a4;
+            color: white;
+            font-weight: 600;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #417a8c;
+        }
+
+        @media (max-width: 600px) {
+            .profile-edit {
+                width: 90%;
+            }
+        }
+
+        /* Header Styles */
+        header {
+            width: 100%;
+            background: rgba(34, 34, 34, 0.8);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+        }
+
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: #5890a4;
+        }
+    </style>
+    
+</head>
+<body>
+  
+
+    <section>
+        <div class="profile-edit">
+            <div class="content">
+                <h2>Post a Job</h2>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="inputBox">
+                        {{ form.title.label_tag }}
+                        {{ form.title }}
+
+                        {{ form.company_name.label_tag }}
+                        {{ form.company_name }}
+
+                        {{ form.location.label_tag }}
+                        {{ form.location }}
+
+                        {{ form.job_type.label_tag }}
+                        {{ form.job_type }}
+
+                        {{ form.description.label_tag }}
+                        {{ form.description }}
+
+                        {{ form.who_can_apply.label_tag }}
+                        {{ form.who_can_apply }}
+
+                        {{ form.last_date_to_apply.label_tag }}
+                        {{ form.last_date_to_apply }}
+                    </div>
+                    <button type="submit">Post Job</button>
+                </form>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

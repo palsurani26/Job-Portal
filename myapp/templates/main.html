@@ -1,0 +1,230 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JobEntry - Job Portal Website</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Favicon -->
+    <link href="{% static 'main/img/favicon.ico' %}" rel="icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icon Fonts -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Bootstrap (CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Animation & Carousel -->
+    <link href="{% static 'main/lib/animate/animate.min.css' %}" rel="stylesheet">
+    <link href="{% static 'main/lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+
+    <style>
+        /* ===== Imported Reset Password Page CSS ===== */
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          font-family: 'Quicksand', sans-serif;
+        }
+
+        body {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          min-height: 100vh;
+          background: #f0f0f0;
+        }
+
+        section {
+          position: absolute;
+          width: 100vw;
+          height: 100vh;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          overflow: hidden;
+        }
+
+        section::before {
+          content: '';
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(88, 144, 164, 0.6)), url('{% static "images/bg.png" %}');
+          background-size: cover;
+          background-position: center;
+        }
+
+        .page-container {
+          position: relative;
+          width: 95%;
+          max-width: 1320px;
+          background: rgba(34, 34, 34, 0.85);
+          color: white;
+          border-radius: 8px;
+          padding: 30px;
+          box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
+          z-index: 100;
+          overflow-y: auto;
+          height: 90vh;
+        }
+
+        nav.navbar {
+          background: rgba(0, 0, 0, 0.6) !important;
+        }
+
+        .navbar-brand h1, .nav-link, .dropdown-item {
+          color: #fff !important;
+        }
+
+        .dropdown-menu {
+          background: rgba(0, 0, 0, 0.85);
+        }
+
+        .dropdown-item:hover {
+          background: #5890a4;
+          color: #000 !important;
+        }
+
+        .btn-primary {
+          background-color: #5890a4 !important;
+          border: none;
+          color: #000;
+          font-weight: 600;
+        }
+
+        .btn-primary:hover {
+          background-color: #ff5722 !important;
+          color: #fff;
+        }
+
+        footer, .copyright {
+          color: #ddd;
+        }
+
+        @media (max-width: 768px) {
+          .page-container {
+            height: auto;
+            padding: 20px;
+          }
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <div class="page-container">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-dark shadow sticky-top p-0">
+                <a href="{% url 'mainpage' %}" class="navbar-brand d-flex align-items-center text-center py-0 px-4 px-lg-5">
+                    <h1 class="m-0">JobEntry</h1>
+                </a>
+                <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav ms-auto p-4 p-lg-0">
+                        <a href="{% url 'mainpage' %}" class="nav-item nav-link active">Home</a>
+                        <a href="{% url 'aboutus' %}" class="nav-item nav-link">About</a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Jobs</a>
+                            <div class="dropdown-menu rounded-0 m-0">
+                                <a href="{% url 'job_list' %}" class="dropdown-item">Job List</a>
+                                <a href="{% url 'apply_job' %}" class="dropdown-item">CV Upload</a>
+                            </div>
+                        </div>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-user"></i> Profile</a>
+                            <div class="dropdown-menu rounded-0 m-0">
+                                <a href="{% url 'edit_profile' %}" class="dropdown-item">Edit Profile</a>
+                                <a href="{% url 'logout' %}" class="dropdown-item">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Carousel -->
+            <div class="container-fluid p-0 mt-4">
+                <div class="owl-carousel header-carousel position-relative">
+                    <div class="owl-carousel-item position-relative">
+                        <img class="img-fluid rounded" src="{% static 'main/img/aboutus.jpg' %}" alt="About Us">
+                        <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center" style="background: rgba(0,0,0,0.5);">
+                            <div class="text-center">
+                                <h1 class="display-4 text-white mb-3">Find The Perfect Job That You Deserve</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search -->
+            <div class="container-fluid bg-primary mt-5 p-4 rounded">
+                <form method="get" action="{% url 'job_list' %}">
+                    <div class="row g-2">
+                        <div class="col-md-4">
+                            <input type="text" name="q" class="form-control border-0" placeholder="Job name or keyword" value="{{ request.GET.q }}">
+                        </div>
+                        <div class="col-md-4">
+                            <select name="job_type" class="form-select border-0">
+                                <option value="">All Job Types</option>
+                                <option value="full_time" {% if request.GET.job_type == 'full_time' %}selected{% endif %}>Full Time</option>
+                                <option value="part_time" {% if request.GET.job_type == 'part_time' %}selected{% endif %}>Part Time</option>
+                                <option value="contract" {% if request.GET.job_type == 'contract' %}selected{% endif %}>Contract</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="text" name="location" class="form-control border-0" placeholder="Location" value="{{ request.GET.location }}">
+                        </div>
+                        <div class="col-md-2 mt-3">
+                            <button class="btn btn-dark border-0 w-100">Search</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- About -->
+            <div class="container mt-5 text-white">
+                <div class="row g-5 align-items-center">
+                    <div class="col-lg-6">
+                        <div class="row g-0 about-bg rounded overflow-hidden">
+                            <div class="col-6 text-start">
+                                <img class="img-fluid w-100" src="{% static 'main/img/about-7.jpg' %}" alt="About 1">
+                            </div>
+                            <div class="col-6 text-start">
+                                <img class="img-fluid" src="{% static 'main/img/about-8.jpg' %}" style="width: 85%; margin-top: 15%;" alt="About 2">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <h1 class="mb-4 text-primary">We Help You Get The Best Job & Find Great Talent</h1>
+                        <p>Find your perfect job match and take the next step in your career today.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="container mt-5">
+                <div class="copyright text-center">
+                    &copy; <a class="border-bottom text-primary" href="#">Job Portal</a>, All Rights Reserved. 
+                    Designed By <a class="border-bottom text-primary" href="#">Pal Surani & Om Trivedi</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JS Libraries -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'main/lib/wow/wow.min.js' %}"></script>
+    <script src="{% static 'main/lib/easing/easing.min.js' %}"></script>
+    <script src="{% static 'main/lib/waypoints/waypoints.min.js' %}"></script>
+    <script src="{% static 'main/lib/owlcarousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'main/js/main.js' %}"></script>
+</body>
+</html>

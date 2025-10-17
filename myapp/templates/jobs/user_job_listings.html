@@ -1,0 +1,73 @@
+{% extends 'jobs/base.html' %}
+
+{% block title %}User Job Listings{% endblock %}
+
+{% block header %}
+
+    {{ block.super }}
+    <nav>
+        <a href="#">USER DASHBOARD</a>
+        <a href="#">LOGOUT</a>
+    </nav>
+{% endblock %}
+
+{% block content %}
+<header>
+ 
+    <div class="logo">JobEntry</div>
+    <form method="get" action="{% url 'job_list' %}">
+        <input type="text" name="q" placeholder="Search jobs..." value="{{ request.GET.q }}">
+    
+        <select name="job_type">
+            <option value="all" {% if request.GET.job_type == 'all' %}selected{% endif %}>All</option>
+            <option value="full time" {% if request.GET.job_type == 'full time' %}selected{% endif %}>Full Time</option>
+            <option value="part time" {% if request.GET.job_type == 'part time' %}selected{% endif %}>Part Time</option>
+            <option value="full time" {% if request.GET.job_type == 'full time' %}selected{% endif %}>Contract</option>
+            <option value="part time" {% if request.GET.job_type == 'part time' %}selected{% endif %}>Freelance</option>
+    
+        </select>
+    
+        <button type="submit">Search</button>
+    </form>
+    <nav style="display: flex; gap: 10px;"> <!-- Flexbox for horizontal layout -->
+        <a href={% url 'mainpage' %} class="nav-item nav-link active">Home</a>
+        <a href={% url 'aboutus' %} class="nav-item nav-link">About</a>
+        <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Jobs</a>
+                                <div class="dropdown-menu rounded-0 m-0">
+                                    <a href="{% url 'job_list' %}" class="dropdown-item">Job List</a>
+                                    <a href="{% url 'apply_job' %}" class="dropdown-item">CV Upload</a>
+                                </div>
+                            </div>
+        <div class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                <i class="fa fa-user"></i> Profile
+            </a>
+            <div class="dropdown-menu rounded-0 m-0">
+                <a href="{% url 'edit_profile' %}" class="dropdown-item">Edit Profile</a>
+                <a href="{% url 'logout' %}" class="dropdown-item">Logout</a>
+            </div>
+    </nav>
+    
+</header>
+<section>
+    
+
+
+
+    <div class="job-listings">
+        <h1>Available Jobs</h1>
+        <ul>
+            {% for job in jobs %}
+            <li>
+                <a href="{% url 'job_detail' job.id %}">{{ job.title }}</a> - 
+                {{ job.company_name }} ({{ job.get_job_type_display }}) 
+                - {{ job.location }}
+            </li>
+            {% empty %}
+            <li>No jobs available at the moment.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+{% endblock %}
